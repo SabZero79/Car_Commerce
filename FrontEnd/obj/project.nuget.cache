@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "dhWg3ZLqqso=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\FrontEnd.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vargs\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,60 @@
+name: dockercompose9925674414746275392
+services:
+  backend:
+    build:
+      context: C:\Users\vargs\source\repos\Car_Commerce\Backend
+      dockerfile: Dockerfile
+    depends_on:
+      sqlserver:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    networks:
+      productnetwork: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "5000"
+        protocol: tcp
+  frontend:
+    build:
+      context: C:\Users\vargs\source\repos\Car_Commerce\Frontend
+      dockerfile: Dockerfile
+    depends_on:
+      backend:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      BACKEND_URL: http://backend
+    networks:
+      productnetwork: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "5001"
+        protocol: tcp
+  sqlserver:
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: Password12345!
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    networks:
+      productnetwork: null
+    ports:
+      - mode: ingress
+        target: 1433
+        published: "1434"
+        protocol: tcp
+    volumes:
+      - type: volume
+        source: sqlvolume
+        target: /var/opt/mssql
+        volume: {}
+networks:
+  productnetwork:
+    name: dockercompose9925674414746275392_productnetwork
+volumes:
+  sqlvolume:
+    name: dockercompose9925674414746275392_sqlvolume

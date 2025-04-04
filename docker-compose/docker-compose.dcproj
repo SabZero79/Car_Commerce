@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.Docker.Sdk">
+  <PropertyGroup>
+    <DockerComposeProjectVersion>3.4</DockerComposeProjectVersion>
+    <DockerComposeFilePaths>docker-compose.yml</DockerComposeFilePaths>
+    <DockerLaunchAction>Launch</DockerLaunchAction>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <ProjectVersion>2.1</ProjectVersion>
+  </PropertyGroup>
+</Project>

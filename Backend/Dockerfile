@@ -1,0 +1,33 @@
+# Base image for final runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+# Build image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+
+# Copy project file and restore dependencies
+COPY Backend.csproj ./
+RUN dotnet restore "Backend.csproj"
+
+# Copy the rest of the app
+COPY . .
+
+# Build the project
+WORKDIR /src
+RUN dotnet build "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Publish to /app/publish
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# Final stage (used in release/debug)
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Backend.dll"]

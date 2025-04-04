@@ -1,0 +1,32 @@
+# Base image for runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+# Build image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+
+# Copy project file and restore
+COPY FrontEnd.csproj ./
+RUN dotnet restore "FrontEnd.csproj"
+
+# Copy the rest of the source
+COPY . .
+
+# Build the app
+RUN dotnet build "FrontEnd.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Publish to /app/publish
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "FrontEnd.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# Final stage for runtime
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "FrontEnd.dll"]

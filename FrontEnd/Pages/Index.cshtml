@@ -1,0 +1,23 @@
+﻿@page
+@model IndexModel
+
+<h1>Available Cars</h1>
+
+@if (!Model.Cars.Any())
+{
+    <p>No cars available.</p>
+}
+else
+{
+    <div class="car-list">
+        @foreach (var car in Model.Cars)
+        {
+            <div class="car-card">
+                <img src="@car.ImageUrl" alt="Car image" width="300" height="225" />
+                <p><strong>Make:</strong> @car.Make</p>
+                <p><strong>Year:</strong> @car.Year</p>
+                <p><strong>Transmission:</strong> @car.Transmission</p>
+            </div>
+        }
+    </div>
+}

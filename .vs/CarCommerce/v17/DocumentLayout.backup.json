@@ -1,0 +1,402 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\services\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\data\\designtimedbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\data\\designtimedbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\controllers\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\controllers\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\models\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\models\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\frontend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\frontend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D3F7A25-B188-4B30-BD77-8F70BFD1D4F2}|docker-compose\\docker-compose.dcproj|c:\\users\\vargs\\source\\repos\\car_commerce\\docker-compose\\docker-compose.dcproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{9D3F7A25-B188-4B30-BD77-8F70BFD1D4F2}|docker-compose\\docker-compose.dcproj|solutionrelative:docker-compose\\docker-compose.dcproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\MSBuild\\Sdks\\Microsoft.Docker.Sdk\\build\\Microsoft.VisualStudio.Docker.Compose.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\frontend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{242AFC2F-87D2-4440-B62E-A5FEFB1B0AEF}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|c:\\users\\vargs\\source\\repos\\car_commerce\\backend\\migrations\\20250404205928_initialmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D87CE34-EC4E-49CC-8C3D-074BD1364087}|Backend\\Backend.csproj|solutionrelative:backend\\migrations\\20250404205928_initialmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{5da8d69b-058a-4294-a87a-f4f7ae2983b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{bdada759-5db7-402f-96e3-402b17c8c5b4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{5da8d69b-058a-4294-a87a-f4f7ae2983b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1890356424:0:{83107a3e-496a-485e-b455-16ddb978e55e}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Backend\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Backend\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T19:37:28.959Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Program.cs",
+              "RelativeDocumentMoniker": "Backend\\Program.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Program.cs",
+              "RelativeToolTip": "Backend\\Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T19:21:53.531Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CarService.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Services\\CarService.cs",
+              "RelativeDocumentMoniker": "FrontEnd\\Services\\CarService.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Services\\CarService.cs",
+              "RelativeToolTip": "FrontEnd\\Services\\CarService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T19:14:20.766Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Car.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Models\\Car.cs",
+              "RelativeDocumentMoniker": "FrontEnd\\Models\\Car.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Models\\Car.cs",
+              "RelativeToolTip": "FrontEnd\\Models\\Car.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T19:12:59.886Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Car.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Car.cs",
+              "RelativeDocumentMoniker": "Backend\\Car.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Car.cs",
+              "RelativeToolTip": "Backend\\Car.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T19:34:37.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CarController.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Controllers\\CarController.cs",
+              "RelativeDocumentMoniker": "Backend\\Controllers\\CarController.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Controllers\\CarController.cs",
+              "RelativeToolTip": "Backend\\Controllers\\CarController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T19:35:06.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Program.cs",
+              "RelativeDocumentMoniker": "FrontEnd\\Program.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Program.cs",
+              "RelativeToolTip": "FrontEnd\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T19:24:41.267Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "FrontEnd\\Pages\\Index.cshtml",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Pages\\Index.cshtml",
+              "RelativeToolTip": "FrontEnd\\Pages\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-04T19:16:27.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Pages\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "FrontEnd\\Pages\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Pages\\Index.cshtml.cs",
+              "RelativeToolTip": "FrontEnd\\Pages\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T19:19:05.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DesignTimeDbContextFactory.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Data\\DesignTimeDbContextFactory.cs",
+              "RelativeDocumentMoniker": "Backend\\Data\\DesignTimeDbContextFactory.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Data\\DesignTimeDbContextFactory.cs",
+              "RelativeToolTip": "Backend\\Data\\DesignTimeDbContextFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T20:11:04.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "20250404205928_initialmigration.cs",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Migrations\\20250404205928_initialmigration.cs",
+              "RelativeDocumentMoniker": "Backend\\Migrations\\20250404205928_initialmigration.cs",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Migrations\\20250404205928_initialmigration.cs",
+              "RelativeToolTip": "Backend\\Migrations\\20250404205928_initialmigration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T20:59:29.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "FrontEnd\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "FrontEnd\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowCIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-04-04T19:17:43.732Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "FrontEnd.csproj",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\FrontEnd.csproj",
+              "RelativeDocumentMoniker": "FrontEnd\\FrontEnd.csproj",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\FrontEnd.csproj",
+              "RelativeToolTip": "FrontEnd\\FrontEnd.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-04T19:12:32.863Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\appsettings.json",
+              "RelativeDocumentMoniker": "Backend\\appsettings.json",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\appsettings.json",
+              "RelativeToolTip": "Backend\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-01T20:02:20.438Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\appsettings.json",
+              "RelativeDocumentMoniker": "FrontEnd\\appsettings.json",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\appsettings.json",
+              "RelativeToolTip": "FrontEnd\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-01T19:23:07.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "docker-compose.dcproj",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\docker-compose\\docker-compose.dcproj",
+              "RelativeDocumentMoniker": "docker-compose\\docker-compose.dcproj",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\docker-compose\\docker-compose.dcproj",
+              "RelativeToolTip": "docker-compose\\docker-compose.dcproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-01T18:59:07.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Dockerfile",
+              "RelativeDocumentMoniker": "FrontEnd\\Dockerfile",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Dockerfile",
+              "RelativeToolTip": "FrontEnd\\Dockerfile",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-01T21:39:16.462Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Dockerfile",
+              "RelativeDocumentMoniker": "Backend\\Dockerfile",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Dockerfile",
+              "RelativeToolTip": "Backend\\Dockerfile",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-01T21:37:10.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Microsoft.VisualStudio.Docker.Compose.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\MSBuild\\Sdks\\Microsoft.Docker.Sdk\\build\\Microsoft.VisualStudio.Docker.Compose.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\MSBuild\\Sdks\\Microsoft.Docker.Sdk\\build\\Microsoft.VisualStudio.Docker.Compose.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\MSBuild\\Sdks\\Microsoft.Docker.Sdk\\build\\Microsoft.VisualStudio.Docker.Compose.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\MSBuild\\Sdks\\Microsoft.Docker.Sdk\\build\\Microsoft.VisualStudio.Docker.Compose.targets",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKgBAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-04-03T00:14:04.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Backend.csproj",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Backend.csproj",
+              "RelativeDocumentMoniker": "Backend\\Backend.csproj",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Backend.csproj",
+              "RelativeToolTip": "Backend\\Backend.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-01T19:37:07.209Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "FrontEnd\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\FrontEnd\\Properties\\launchSettings.json",
+              "RelativeToolTip": "FrontEnd\\Properties\\launchSettings.json",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACMAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-01T19:23:12.557Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Backend\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Backend\\Properties\\launchSettings.json",
+              "ViewState": "AgIAABcAAAAAAAAAAAAkwCEAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-01T19:09:48.831Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1262,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
