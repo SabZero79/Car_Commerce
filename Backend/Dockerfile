@@ -11,14 +11,13 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Copy project file and restore dependencies
-COPY Backend.csproj ./
+COPY . .
 RUN dotnet restore "Backend.csproj"
 
 # Copy the rest of the app
 COPY . .
 
 # Build the project
-WORKDIR /src
 RUN dotnet build "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Publish to /app/publish

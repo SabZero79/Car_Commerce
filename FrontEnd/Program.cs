@@ -8,7 +8,7 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 // Add services to the container.
 builder.Services.AddHttpClient<CarService>(client =>
 {
-    client.BaseAddress = new Uri("http://backend"); // internal Docker DNS
+    client.BaseAddress = new Uri("http://backend:8080"); // internal Docker DNS
 });
 builder.Services.AddRazorPages();
 

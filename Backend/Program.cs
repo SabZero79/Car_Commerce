@@ -16,6 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,11 +33,23 @@ app.UseAuthorization();
 using(var scope = app.Services.CreateScope())
 {
     var context= scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    
+    Console.WriteLine("Migrations assembly: " + context.GetType().Assembly.FullName);
+
+    if (context.Database.GetPendingMigrations().Any())
+    {
+        Console.WriteLine("Pending migrations found.");
+    }
+    else
+    {
+        Console.WriteLine("No pending migrations.");
+    }
+
     try
     {
         // Only applies migrations, does NOT recreate the DB
+        Console.WriteLine("Attempting to apply EF Core migrations...");
         context.Database.Migrate();
+        Console.WriteLine("EF Core migrations applied successfully.");
     }
     catch (Exception ex)
     {
