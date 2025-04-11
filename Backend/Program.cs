@@ -1,6 +1,7 @@
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 
+Console.WriteLine("THIS IS SABI’S UPDATED IMAGE");
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -30,34 +31,49 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-using(var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
-    var context= scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    Console.WriteLine("Migrations assembly: " + context.GetType().Assembly.FullName);
-
-    if (context.Database.GetPendingMigrations().Any())
-    {
-        Console.WriteLine("Pending migrations found.");
-    }
-    else
-    {
-        Console.WriteLine("No pending migrations.");
-    }
+    Console.WriteLine("Inside CreateScope");
 
     try
     {
-        // Only applies migrations, does NOT recreate the DB
-        Console.WriteLine("Attempting to apply EF Core migrations...");
-        context.Database.Migrate();
-        Console.WriteLine("EF Core migrations applied successfully.");
+        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        Console.WriteLine("Resolved ApplicationDbContext");
+
+        bool carsTableExists = db.Database
+            .SqlQueryRaw<int>(@"SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Cars'")
+            .AsEnumerable()
+            .FirstOrDefault() > 0;
+
+        if (carsTableExists)
+        {
+            Console.WriteLine("The 'Cars' table already exists. Skipping migration.");
+        }
+        else
+        {
+            Console.WriteLine("'Cars' table does not exist. Checking for pending migrations...");
+            var migrations = db.Database.GetPendingMigrations().ToList();
+
+            if (migrations.Any())
+            {
+                Console.WriteLine($"Pending migrations:");
+                migrations.ForEach(m => Console.WriteLine($" - {m}"));
+                db.Database.Migrate();
+                Console.WriteLine("Migrations applied successfully.");
+            }
+            else
+            {
+                Console.WriteLine("No pending migrations.");
+            }
+        }
     }
     catch (Exception ex)
     {
-        // Optional: log the error
-        Console.WriteLine($"Migration failed: {ex.Message}");
+        Console.WriteLine($"Migration error: {ex.Message}");
+        throw;
     }
-
 }
+
 
 app.MapControllers();
 
