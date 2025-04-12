@@ -25,7 +25,11 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Set AKS context
-        run: az aks get-credentials --resource-group ${{ secrets.RESOURCE_GROUP }} --name ${{ secrets.CLUSTER_NAME }} --overwrite-existing
+        uses: azure/CLI@v1
+        with: 
+          azcliversion: 2.51.0
+          inlineScript: |
+           az aks get-credentials --resource-group ${{ secrets.RESOURCE_GROUP }} --name ${{ secrets.CLUSTER_NAME }} --overwrite-existing
 
       - name: Docker login to ACR
         run: echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN_SERVER }} --username ${{ secrets.ACR_USERNAME }} --password-stdin
