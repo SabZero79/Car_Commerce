@@ -1,0 +1,54 @@
+# values.yaml
+
+namespace: carcommerce
+
+serviceAccount:
+  create: false
+
+service:
+  port: 80
+  type: ClusterIP
+
+ingress:
+  enabled: false
+
+hpa:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+backend:
+  image:
+    repository: carcommerceacr.azurecr.io/backend
+    tag: latest
+    pullPolicy: Always
+  containerPort: 80
+  
+  service:
+    type: ClusterIP
+    port: 8080
+
+frontend:
+  image:
+    repository: carcommerceacr.azurecr.io/frontend
+    tag: latest
+  env:
+    ASPNETCORE_ENVIRONMENT: Development
+  containerPort: 80
+  
+  service:
+    type: LoadBalancer
+    port: 8080
+
+sqlserver:
+  image:
+    repository: mcr.microsoft.com/mssql/server
+    tag: 2022-latest
+  saPassword: "Password12345!"
+  port: 1433
+  persistence:
+    enabled: true
+    storageClass: default
+    accessMode: ReadWriteOnce
+    size: 1Gi
