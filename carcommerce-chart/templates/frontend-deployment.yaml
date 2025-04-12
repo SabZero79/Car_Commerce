@@ -22,6 +22,8 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: {{ .Values.frontend.env.ASPNETCORE_ENVIRONMENT }}
+            - name: BACKEND_URL
+              value: http://backend
 ---
 apiVersion: v1
 kind: Service
