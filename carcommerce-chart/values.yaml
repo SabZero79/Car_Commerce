@@ -21,7 +21,7 @@ autoscaling:
 backend:
   image:
     repository: carcommerceacr.azurecr.io/backend
-    tag: latest
+    tag: ""  # Will be overridden by helm --set
     pullPolicy: Always
   containerPort: 80
   
@@ -32,7 +32,7 @@ backend:
 frontend:
   image:
     repository: carcommerceacr.azurecr.io/frontend
-    tag: latest
+    tag: ""  # Will be overridden by helm --set
   env:
     ASPNETCORE_ENVIRONMENT: Development
   containerPort: 80
