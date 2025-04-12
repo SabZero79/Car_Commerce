@@ -29,6 +29,8 @@ jobs:
         with: 
           azcliversion: 2.51.0
           inlineScript: |
+           mkdir -p ~/.kube
+           export KUBECONFIG=~/.kube/config
            az aks get-credentials --resource-group ${{ secrets.RESOURCE_GROUP }} --name ${{ secrets.CLUSTER_NAME }} --overwrite-existing
 
       - name: Docker login to ACR
@@ -44,8 +46,14 @@ jobs:
           docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }} ./FrontEnd
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }}
 
-      - name: Debug check cluster connection
-        run: kubectl get nodes
+      - name: Set KUBECONFIG env variable
+        run: echo "KUBECONFIG=$HOME/.kube/config" >> $GITHUB_ENV
+
+      - name: Verify AKS connection
+        run: |
+          echo "KUBECONFIG: $KUBECONFIG"
+          kubectl config get-contexts
+          kubectl get nodes
       
       - name: Helm upgrade
         run: |
