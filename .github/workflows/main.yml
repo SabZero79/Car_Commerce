@@ -37,7 +37,7 @@ jobs:
 
       - name: Build and push frontend
         run: |
-          docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }} ./Frontend
+          docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }} ./Car_Commerce/Frontend
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }}
 
       - name: Helm upgrade
