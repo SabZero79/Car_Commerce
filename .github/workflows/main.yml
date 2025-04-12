@@ -25,16 +25,11 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Set AKS context
-        uses: azure/CLI@v1
-        with: 
-          azcliversion: 2.51.0
-          inlineScript: |
-           mkdir -p ~/.kube
-           export KUBECONFIG=~/.kube/config
-           az aks get-credentials --resource-group ${{ secrets.RESOURCE_GROUP }} --name ${{ secrets.CLUSTER_NAME }} --file $KUBECONFIG --overwrite-existing
+        run: |
+           az aks get-credentials --resource-group ${{ secrets.RESOURCE_GROUP }} --name ${{ secrets.CLUSTER_NAME }} --overwrite-existing
 
-      - name: Set KUBECONFIG env variable
-        run: echo "KUBECONFIG=$HOME/.kube/config" >> $GITHUB_ENV
+      - name: Confirm connection to AKS
+        run: kubectl get nodes
 
       - name: Docker login to ACR
         run: echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN_SERVER }} --username ${{ secrets.ACR_USERNAME }} --password-stdin
