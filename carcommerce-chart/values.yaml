@@ -33,6 +33,7 @@ frontend:
   image:
     repository: carcommerceacr.azurecr.io/frontend
     tag: ""  # Will be overridden by helm --set
+    pullPolicy: Always
   env:
     ASPNETCORE_ENVIRONMENT: Development
   containerPort: 80
