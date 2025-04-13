@@ -1,4 +1,5 @@
 using Backend.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("THIS IS SABI’S UPDATED IMAGE");
@@ -35,8 +36,35 @@ using (var scope = app.Services.CreateScope())
 {
     Console.WriteLine("Inside CreateScope");
 
+    var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+    string masterConnStr = config.GetConnectionString("MasterConnection");
+    string defaultConnStr = config.GetConnectionString("DefaultConnection");
+    string targetDbName = "CarEcommerce";
+
     try
     {
+        using (var masterConn = new SqlConnection(masterConnStr))
+        {
+            masterConn.Open();
+            using (var cmd = masterConn.CreateCommand())
+            {
+                cmd.CommandText = $"SELECT COUNT(*) FROM sys.databases WHERE name = @dbName";
+                cmd.Parameters.AddWithValue("@dbName", targetDbName);
+
+                int dbExists = (int)cmd.ExecuteScalar();
+
+                if (dbExists == 0)
+                {
+                    Console.WriteLine($"Database '{targetDbName}' does not exist. Skipping migration.");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine($"Database '{targetDbName}' exists. Continuing...");
+                }
+            }
+        }
+
         var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         Console.WriteLine("Resolved ApplicationDbContext");
 
