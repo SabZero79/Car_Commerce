@@ -2,14 +2,19 @@ using FrontEnd.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Determine backend URL from environment or default to 'http://backend'
+// USE THIS FOR CLOUD DEPLOYMENT
 var backendUrl = Environment.GetEnvironmentVariable("BACKEND_URL") ?? "http://backend";
-
 builder.Services.AddHttpClient<CarService>(client =>
 {
     client.BaseAddress = new Uri(backendUrl);
     client.Timeout = TimeSpan.FromSeconds(30);
 });
+
+// USE THIS FOR LOCAL DEPLOYMENT
+//builder.Services.AddHttpClient<CarService>(client =>
+//{
+//    client.BaseAddress = new Uri("http://backend:8080"); // internal Docker DNS
+//});
 
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
