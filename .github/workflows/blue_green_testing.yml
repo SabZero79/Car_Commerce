@@ -46,7 +46,7 @@ jobs:
       env:
           SONAR_TOKEN: ${{ secrets.Sonar_Cloud_Token }}
 
-    - name: 🔎 Run Dependency Scan (.NET Projects Only)
+    - name: Run Dependency Scan (.NET Projects Only)
       run: |
         set -e
         for proj in ./Backend/Backend.csproj ./FrontEnd/FrontEnd.csproj; do
