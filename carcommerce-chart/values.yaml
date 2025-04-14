@@ -1,5 +1,3 @@
-# values.yaml
-
 namespace: carcommerce
 
 serviceAccount:
@@ -17,7 +15,7 @@ ingress:
   className: nginx
   annotations: {}
   hosts:
-    - host: 68.219.57.95.nip.io
+    - host: staging.68.219.57.95.nip.io  # overridden via Helm --set for staging/prod
       paths:
         - path: /
           pathType: Prefix
@@ -35,7 +33,6 @@ backend:
     tag: ""  # Will be overridden by helm --set
     pullPolicy: Always
   containerPort: 80
-  
   service:
     type: ClusterIP
     port: 8080
@@ -48,7 +45,6 @@ frontend:
   env:
     ASPNETCORE_ENVIRONMENT: Development
   containerPort: 80
-  
   service:
     type: LoadBalancer
     port: 8080
