@@ -15,6 +15,7 @@ env:
   PRODUCTION_NAMESPACE: carcommerce
   HELM_CHART_DIR: ./carcommerce-chart
   IMAGE_TAG: ${{ github.run_number }}
+  URIS: http://68.219.57.95/
 
 jobs:
   build-and-scan:
@@ -43,7 +44,7 @@ jobs:
             -Dsonar.organization=sabzero79
             -Dsonar.projectKey=SabZero79_Car_Commerce
       env:
-          SONAR_TOKEN: ${{ secrets.SONARCLOUD_SECRET }}
+          SONAR_TOKEN: ${{ secrets.Sonar_Cloud_Token }}
 
     - name: Dependency Scan
       run: dotnet list package --vulnerable --include-transitive
@@ -113,7 +114,7 @@ jobs:
       run: docker pull grafana/k6
   
     - name: Run k6 load test, capture report
-      run: docker run -i grafana/k6 run - <perf2.js > k6report.txt || true
+      run: docker run -i grafana/k6 run - <perf1.js > k6report.txt || true
         
     - uses: actions/upload-artifact@v4
       with:
