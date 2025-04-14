@@ -12,11 +12,7 @@ spec:
   ingressClassName: {{ .Values.ingress.className }}
   rules:
     {{- with index .Values.ingress.hosts 0 }}
-    - host: {{- if eq $.Values.global.environment "production" -}}
-              carcommerce.{{ .host }}
-            {{- else -}}
-              staging.carcommerce.{{ .host }}
-            {{- end }}
+    - host: {{ if eq $.Values.global.environment "production" }}carcommerce.{{ .host }}{{ else }}staging.{{ .host }}{{ end }}
       http:
         paths:
           {{- range .paths }}

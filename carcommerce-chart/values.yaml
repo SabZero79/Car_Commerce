@@ -17,7 +17,7 @@ ingress:
   className: nginx
   annotations: {}
   hosts:
-    - host: staging.carcommerce.yourdomain.com  # this will be overridden by the Helm template based on environment
+    - host: 68.219.57.95.nip.io
       paths:
         - path: /
           pathType: Prefix
