@@ -9,8 +9,19 @@ service:
   port: 80
   type: ClusterIP
 
+global:
+  environment: staging  # or 'production', overridden at deployment time
+
 ingress:
-  enabled: false
+  enabled: true
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: staging.carcommerce.yourdomain.com  # this will be overridden by the Helm template based on environment
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
 
 hpa:
   enabled: false
