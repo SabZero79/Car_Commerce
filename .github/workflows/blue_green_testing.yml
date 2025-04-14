@@ -36,11 +36,14 @@ jobs:
         dotnet build Backend/Backend.csproj --configuration Release
 
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@v2
+      uses: sonarsource/sonarcloud-github-action@master
       with:
-        projectBaseDir: ./Backend
+          projectBaseDir: .
+          args: >
+            -Dsonar.organization=sabzero79
+            -Dsonar.projectKey=SabZero79_Car_Commerce
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_SECRET }}
 
     - name: Dependency Scan
       run: dotnet list package --vulnerable --include-transitive
