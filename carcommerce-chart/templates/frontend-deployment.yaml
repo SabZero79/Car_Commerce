@@ -1,18 +1,17 @@
-# templates/frontend-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: {{ .Release.Name }}-frontend
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: {{ .Release.Name }}-frontend
   template:
     metadata:
       labels:
-        app: frontend
+        app: {{ .Release.Name }}-frontend
     spec:
       containers:
         - name: frontend
@@ -23,17 +22,17 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: {{ .Values.frontend.env.ASPNETCORE_ENVIRONMENT }}
             - name: BACKEND_URL
-              value: http://backend
+              value: http://{{ .Release.Name }}-backend
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: {{ .Release.Name }}-frontend
   namespace: {{ .Values.namespace }}
 spec:
   type: {{ .Values.frontend.service.type }}
   selector:
-    app: frontend
+    app: {{ .Release.Name }}-frontend
   ports:
     - port: 80
       targetPort: {{ .Values.frontend.service.port }}
