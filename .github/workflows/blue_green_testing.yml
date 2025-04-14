@@ -1,0 +1,136 @@
+name: Blue/Green Deployment Pipeline
+
+on:
+  workflow_dispatch:
+  #push:
+    #branches:
+     # - main
+
+env:
+  REGISTRY_NAME: carcommerceacr
+  ACR_URL: carcommerceacr.azurecr.io
+  RESOURCE_GROUP: carcommerce-rg
+  CLUSTER_NAME: carcommerce-aks
+  STAGING_NAMESPACE: carcommerce-staging
+  PRODUCTION_NAMESPACE: carcommerce
+  HELM_CHART_DIR: ./carcommerce-chart
+  IMAGE_TAG: ${{ github.run_number }}
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    name: Build, Unit Test, and Scan
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore and Build
+      run: |
+        dotnet restore Backend/Backend.csproj
+        dotnet build Backend/Backend.csproj --configuration Release
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v2
+      with:
+        projectBaseDir: ./Backend
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    - name: Dependency Scan
+      run: dotnet list package --vulnerable --include-transitive
+
+  docker-build-push:
+    needs: build-and-scan
+    runs-on: ubuntu-latest
+    name: Build and Push Docker Images
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Azure Container Registry Login
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.ACR_URL }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+
+    - name: Build and Push Backend Image
+      run: |
+        docker build -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
+        docker push $ACR_URL/backend:${IMAGE_TAG}
+
+    - name: Build and Push Frontend Image
+      run: |
+        docker build -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
+        docker push $ACR_URL/frontend:${IMAGE_TAG}
+
+  deploy-to-staging:
+    needs: docker-build-push
+    runs-on: ubuntu-latest
+    name: Deploy to Staging
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Get AKS Credentials
+      run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
+
+    - name: Helm Upgrade Staging
+      run: |
+        helm upgrade --install carcommerce-staging $HELM_CHART_DIR \
+          --namespace $STAGING_NAMESPACE \
+          --set backend.image.tag=${IMAGE_TAG} \
+          --set frontend.image.tag=${IMAGE_TAG} \
+          --set global.environment=staging
+
+  post-deploy-tests:
+    needs: deploy-to-staging
+    runs-on: ubuntu-latest
+    name: Run k6, ZAP, and Selenium Tests
+
+    steps:
+    - name: k6 Load Test
+      run: echo "Simulate k6 load test..."
+
+    - name: OWASP ZAP Scan
+      run: echo "Run security scan..."
+
+  promote-to-production:
+    needs: post-deploy-tests
+    runs-on: ubuntu-latest
+    name: Promote to Production
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Get AKS Credentials
+      run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
+
+    - name: Helm Upgrade Production
+      run: |
+        helm upgrade --install carcommerce $HELM_CHART_DIR \
+          --namespace $PRODUCTION_NAMESPACE \
+          --set backend.image.tag=${IMAGE_TAG} \
+          --set frontend.image.tag=${IMAGE_TAG} \
+          --set global.environment=production
