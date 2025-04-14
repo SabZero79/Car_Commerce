@@ -92,9 +92,10 @@ jobs:
       run: |
         helm upgrade --install carcommerce-staging $HELM_CHART_DIR \
           --namespace $STAGING_NAMESPACE \
-          --set backend.image.tag=${IMAGE_TAG} \
-          --set frontend.image.tag=${IMAGE_TAG} \
-          --set global.environment=staging
+          --set backend.image.tag=${{ env.IMAGE_TAG }} \
+          --set frontend.image.tag=${{ env.IMAGE_TAG }} \
+          --set global.environment=staging \
+          --set ingress.hosts[0].host="staging.68.219.57.95.nip.io"
 
   post-deploy-tests:
     name: K6 Load Test and ZAP Test
@@ -146,6 +147,7 @@ jobs:
       run: |
         helm upgrade --install carcommerce $HELM_CHART_DIR \
           --namespace $PRODUCTION_NAMESPACE \
-          --set backend.image.tag=${IMAGE_TAG} \
-          --set frontend.image.tag=${IMAGE_TAG} \
-          --set global.environment=production
+          --set backend.image.tag=${{ env.IMAGE_TAG }} \
+          --set frontend.image.tag=${{ env.IMAGE_TAG }} \
+          --set global.environment=production \
+          --set ingress.hosts[0].host="prod.68.219.57.95.nip.io"
