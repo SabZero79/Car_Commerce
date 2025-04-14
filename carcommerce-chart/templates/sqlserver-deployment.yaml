@@ -2,17 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sqlserver
+  name: {{ .Release.Name }}-sqlserver
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sqlserver
+      app: {{ .Release.Name }}-sqlserver
   template:
     metadata:
       labels:
-        app: sqlserver
+        app: {{ .Release.Name }}-sqlserver
     spec:
       securityContext:
         fsGroup: 10001  # mssql user UID
@@ -46,12 +46,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sqlserver
+  name: {{ .Release.Name }}-sqlserver
   namespace: {{ .Values.namespace }}
 spec:
   type: ClusterIP
   selector:
-    app: sqlserver
+    app: {{ .Release.Name }}-sqlserver
   ports:
     - port: {{ .Values.sqlserver.port }}
       targetPort: {{ .Values.sqlserver.port }}
