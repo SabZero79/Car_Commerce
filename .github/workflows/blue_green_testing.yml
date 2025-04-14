@@ -15,6 +15,7 @@ env:
   PRODUCTION_NAMESPACE: carcommerce
   HELM_CHART_DIR: ./carcommerce-chart
   IMAGE_TAG: ${{ github.run_number }}
+  URIS: http://68.219.57.95/
 
 jobs:
   build-and-scan:
@@ -43,12 +44,17 @@ jobs:
             -Dsonar.organization=sabzero79
             -Dsonar.projectKey=SabZero79_Car_Commerce
       env:
-          SONAR_TOKEN: ${{ secrets.SONARCLOUD_SECRET }}
+          SONAR_TOKEN: ${{ secrets.Sonar_Cloud_Token }}
 
-    - name: Dependency Scan
-      run: dotnet list package --vulnerable --include-transitive
+    - name: Run Dependency Scan (.NET Projects Only)
+      run: |
+        set -e
+        for proj in ./Backend/Backend.csproj ./FrontEnd/FrontEnd.csproj; do
+          echo "Checking vulnerabilities in $proj"
+          dotnet list "$proj" package --vulnerable --include-transitive || exit 1
+        done
 
-  docker-build-push:
+  docker-build-push-deploy-staging:
     needs: build-and-scan
     runs-on: ubuntu-latest
     name: Build and Push Docker Images
@@ -78,33 +84,22 @@ jobs:
         docker build -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
         docker push $ACR_URL/frontend:${IMAGE_TAG}
 
-  deploy-to-staging:
-    needs: docker-build-push
-    runs-on: ubuntu-latest
-    name: Deploy to Staging
-
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Get AKS Credentials
-      run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
+    - name: Set KUBECONFIG and Authenticate with AKS
+      run: |
+        az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 
     - name: Helm Upgrade Staging
       run: |
         helm upgrade --install carcommerce-staging $HELM_CHART_DIR \
           --namespace $STAGING_NAMESPACE \
-          --set backend.image.tag=${IMAGE_TAG} \
-          --set frontend.image.tag=${IMAGE_TAG} \
-          --set global.environment=staging
+          --set backend.image.tag=${{ env.IMAGE_TAG }} \
+          --set frontend.image.tag=${{ env.IMAGE_TAG }} \
+          --set global.environment=staging \
+          --set ingress.hosts[0].host="staging.68.219.57.95.nip.io"
 
   post-deploy-tests:
     name: K6 Load Test and ZAP Test
-    needs: deploy-to-staging
+    needs: docker-build-push-deploy-staging
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -113,7 +108,7 @@ jobs:
       run: docker pull grafana/k6
   
     - name: Run k6 load test, capture report
-      run: docker run -i grafana/k6 run - <perf2.js > k6report.txt || true
+      run: docker run -i grafana/k6 run - <perf1.js > k6report.txt || true
         
     - uses: actions/upload-artifact@v4
       with:
@@ -152,6 +147,7 @@ jobs:
       run: |
         helm upgrade --install carcommerce $HELM_CHART_DIR \
           --namespace $PRODUCTION_NAMESPACE \
-          --set backend.image.tag=${IMAGE_TAG} \
-          --set frontend.image.tag=${IMAGE_TAG} \
-          --set global.environment=production
+          --set backend.image.tag=${{ env.IMAGE_TAG }} \
+          --set frontend.image.tag=${{ env.IMAGE_TAG }} \
+          --set global.environment=production \
+          --set ingress.hosts[0].host="prod.68.219.57.95.nip.io"
