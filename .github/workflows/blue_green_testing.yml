@@ -46,8 +46,13 @@ jobs:
       env:
           SONAR_TOKEN: ${{ secrets.Sonar_Cloud_Token }}
 
-    - name: Dependency Scan
-      run: dotnet list package --vulnerable --include-transitive
+    - name: 🔎 Run Dependency Scan (.NET Projects Only)
+      run: |
+        set -e
+        for proj in ./Backend/Backend.csproj ./FrontEnd/FrontEnd.csproj; do
+          echo "Checking vulnerabilities in $proj"
+          dotnet list "$proj" package --vulnerable --include-transitive || exit 1
+        done
 
   docker-build-push:
     needs: build-and-scan
