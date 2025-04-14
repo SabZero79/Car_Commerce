@@ -100,16 +100,34 @@ jobs:
           --set global.environment=staging
 
   post-deploy-tests:
+    name: K6 Load Test and ZAP Test
     needs: deploy-to-staging
     runs-on: ubuntu-latest
-    name: Run k6, ZAP, and Selenium Tests
-
     steps:
-    - name: k6 Load Test
-      run: echo "Simulate k6 load test..."
-
-    - name: OWASP ZAP Scan
-      run: echo "Run security scan..."
+    - uses: actions/checkout@v4
+      
+    - name: Pull Docker image for k6
+      run: docker pull grafana/k6
+  
+    - name: Run k6 load test, capture report
+      run: docker run -i grafana/k6 run - <perf2.js > k6report.txt || true
+        
+    - uses: actions/upload-artifact@v4
+      with:
+        name: k6report
+        path: k6report.txt
+          
+    - name: Pull Docker image for ZAP
+      run: docker pull zaproxy/zap-weekly
+  
+    - name: Run baseline scan
+      run: docker run -v /report:/zap/wrk/:rw --user root -t zaproxy/zap-weekly zap-baseline.py -t ${{env.URIS}} -I -r zapreport.html
+    
+    - uses: actions/upload-artifact@v4
+      name: upload ZAP report
+      with:
+        name: ZAPreport
+        path: /report/zapreport.html
 
   promote-to-production:
     needs: post-deploy-tests
