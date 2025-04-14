@@ -11,14 +11,15 @@ metadata:
 spec:
   ingressClassName: {{ .Values.ingress.className }}
   rules:
-    - host: {{- if eq .Values.global.environment "production" -}}
-              carcommerce.yourdomain.com
+    {{- with index .Values.ingress.hosts 0 }}
+    - host: {{- if eq $.Values.global.environment "production" -}}
+              carcommerce.{{ .host }}
             {{- else -}}
-              staging.carcommerce.yourdomain.com
+              staging.carcommerce.{{ .host }}
             {{- end }}
       http:
         paths:
-          {{- range .Values.ingress.hosts[0].paths }}
+          {{- range .paths }}
           - path: {{ .path }}
             pathType: {{ .pathType }}
             backend:
@@ -27,6 +28,7 @@ spec:
                 port:
                   number: 80
           {{- end }}
+    {{- end }}
   {{- if .Values.ingress.tls }}
   tls:
     {{- toYaml .Values.ingress.tls | nindent 4 }}
