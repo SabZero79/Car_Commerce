@@ -54,7 +54,7 @@ jobs:
           dotnet list "$proj" package --vulnerable --include-transitive || exit 1
         done
 
-  docker-build-push:
+  docker-build-push-deploy-staging:
     needs: build-and-scan
     runs-on: ubuntu-latest
     name: Build and Push Docker Images
@@ -84,22 +84,6 @@ jobs:
         docker build -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
         docker push $ACR_URL/frontend:${IMAGE_TAG}
 
-  deploy-to-staging:
-    needs: docker-build-push
-    runs-on: ubuntu-latest
-    name: Deploy to Staging
-
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Get AKS Credentials
-      run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
-
     - name: Helm Upgrade Staging
       run: |
         helm upgrade --install carcommerce-staging $HELM_CHART_DIR \
@@ -110,7 +94,7 @@ jobs:
 
   post-deploy-tests:
     name: K6 Load Test and ZAP Test
-    needs: deploy-to-staging
+    needs: docker-build-push-deploy-staging
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
