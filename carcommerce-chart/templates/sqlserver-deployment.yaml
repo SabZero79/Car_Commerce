@@ -39,7 +39,7 @@ spec:
       volumes:
         - name: mssql-storage
           persistentVolumeClaim:
-            claimName: sqlserver-pvc
+            claimName: {{ .Release.Name }}-sqlserver-pvc
 
 ---
 
@@ -61,7 +61,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sqlserver-pvc
+  name: {{ .Release.Name }}-sqlserver-pvc
   namespace: {{ .Values.namespace }}
 spec:
   accessModes:
