@@ -84,6 +84,10 @@ jobs:
         docker build -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
         docker push $ACR_URL/frontend:${IMAGE_TAG}
 
+    - name: Set KUBECONFIG and Authenticate with AKS
+      run: |
+        az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
+
     - name: Helm Upgrade Staging
       run: |
         helm upgrade --install carcommerce-staging $HELM_CHART_DIR \
