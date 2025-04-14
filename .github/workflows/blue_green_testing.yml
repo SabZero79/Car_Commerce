@@ -96,6 +96,8 @@ jobs:
           --set frontend.image.tag=${{ env.IMAGE_TAG }} \
           --set global.environment=staging \
           --set ingress.hosts[0].host="staging.68.219.57.95.nip.io"
+          --set ingress.hosts[0].paths[0].path="/" \
+          --set ingress.hosts[0].paths[0].pathType="Prefix"
 
   post-deploy-tests:
     name: K6 Load Test and ZAP Test
