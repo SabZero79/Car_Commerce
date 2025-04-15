@@ -19,8 +19,11 @@ spec:
           ports:
             - containerPort: {{ .Values.backend.service.port }}
           env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: {{ .Values.backend.env.ASPNETCORE_ENVIRONMENT | quote }}
             - name: ConnectionStrings__DefaultConnection
-            value: {{ .Values.backend.env.ConnectionStrings__DefaultConnection | quote }}
+              value: {{ .Values.backend.env.ConnectionStrings__DefaultConnection | quote }}
+
 ---
 apiVersion: v1
 kind: Service
