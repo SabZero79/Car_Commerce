@@ -47,7 +47,7 @@ frontend:
     pullPolicy: Always
   env:
     ASPNETCORE_ENVIRONMENT: Development
-  containerPort: 80
+  containerPort: 8080
   service:
     type: ClusterIP
     port: 8080
