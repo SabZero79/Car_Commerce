@@ -85,14 +85,12 @@ jobs:
         az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
     - name: Helm Upgrade Staging
       run: |
-        helm upgrade --install carcommerce-staging $HELM_CHART_DIR \
+        helm upgrade --install carcommerce-staging ./carcommerce-chart \
           --namespace $STAGING_NAMESPACE \
+          --values ./carcommerce-chart/values-staging.yaml \
           --set backend.image.tag=${{ env.IMAGE_TAG }} \
-          --set frontend.image.tag=${{ env.IMAGE_TAG }} \
-          --set global.environment=staging \
-          --set ingress.hosts[0].host="staging.68.219.57.95.nip.io"
-          --set ingress.hosts[0].paths[0].path="/" \
-          --set ingress.hosts[0].paths[0].pathType="Prefix"
+          --set frontend.image.tag=${{ env.IMAGE_TAG }}
+    
   post-deploy-tests:
     name: K6 Load Test and ZAP Test
     needs: docker-build-push-deploy-staging
@@ -141,9 +139,8 @@ jobs:
 
     - name: Helm Upgrade Production
       run: |
-        helm upgrade --install carcommerce $HELM_CHART_DIR \
+        helm upgrade --install carcommerce ./carcommerce-chart \
           --namespace $PRODUCTION_NAMESPACE \
+          --values ./carcommerce-chart/values-production.yaml \
           --set backend.image.tag=${{ env.IMAGE_TAG }} \
-          --set frontend.image.tag=${{ env.IMAGE_TAG }} \
-          --set global.environment=production \
-          --set ingress.hosts[0].host="prod.68.219.57.95.nip.io"
+          --set frontend.image.tag=${{ env.IMAGE_TAG }}
