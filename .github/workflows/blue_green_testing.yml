@@ -1,4 +1,4 @@
-name: Blue/Green Deployment Pipeline
+name: Blue-Green Deployment Pipeline
 
 on:
   workflow_dispatch:
