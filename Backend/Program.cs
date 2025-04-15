@@ -40,6 +40,7 @@ using (var scope = app.Services.CreateScope())
     string masterConnStr = config.GetConnectionString("MasterConnection");
     string defaultConnStr = config.GetConnectionString("DefaultConnection");
     string targetDbName = "CarEcommerce";
+    bool CarCommerceDBExists;
 
     try
     {
@@ -56,22 +57,27 @@ using (var scope = app.Services.CreateScope())
                 if (dbExists == 0)
                 {
                     Console.WriteLine($"Database '{targetDbName}' does not exist. Skipping migration.");
-                    return;
+                    CarCommerceDBExists = false;
                 }
                 else
                 {
                     Console.WriteLine($"Database '{targetDbName}' exists. Continuing...");
+                    CarCommerceDBExists = true;
                 }
             }
         }
 
         var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         Console.WriteLine("Resolved ApplicationDbContext");
+        bool carsTableExists = false;
 
-        bool carsTableExists = db.Database
+        if (CarCommerceDBExists)
+        {
+            carsTableExists = db.Database
             .SqlQueryRaw<int>(@"SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Cars'")
             .AsEnumerable()
             .FirstOrDefault() > 0;
+        }
 
         if (carsTableExists)
         {
