@@ -18,6 +18,9 @@ spec:
           image: {{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}
           ports:
             - containerPort: {{ .Values.backend.service.port }}
+          env:
+            - name: ConnectionStrings__DefaultConnection
+            value: {{ .Values.backend.env.ConnectionStrings__DefaultConnection | quote }}
 ---
 apiVersion: v1
 kind: Service

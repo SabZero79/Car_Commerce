@@ -36,6 +36,8 @@ backend:
   service:
     type: ClusterIP
     port: 8080
+  env:
+    ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=CarEcommerce;User=sa;Password=Password12345!;Encrypt=False;TrustServerCertificate=True;"
 
 frontend:
   image:
