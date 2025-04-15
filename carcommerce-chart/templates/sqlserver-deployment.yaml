@@ -2,17 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-sqlserver
+  name: sqlserver
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-sqlserver
+      app: sqlserver
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-sqlserver
+        app: sqlserver
     spec:
       securityContext:
         fsGroup: 10001  # mssql user UID
@@ -39,19 +39,19 @@ spec:
       volumes:
         - name: mssql-storage
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-sqlserver-pvc
+            claimName: sqlserver-pvc
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-sqlserver
+  name: sqlserver
   namespace: {{ .Values.namespace }}
 spec:
   type: ClusterIP
   selector:
-    app: {{ .Release.Name }}-sqlserver
+    app: sqlserver
   ports:
     - port: {{ .Values.sqlserver.port }}
       targetPort: {{ .Values.sqlserver.port }}
@@ -61,7 +61,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Release.Name }}-sqlserver-pvc
+  name: sqlserver-pvc
   namespace: {{ .Values.namespace }}
 spec:
   accessModes:
