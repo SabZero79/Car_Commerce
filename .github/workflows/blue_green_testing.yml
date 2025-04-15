@@ -102,7 +102,7 @@ jobs:
       run: docker pull grafana/k6
   
     - name: Run k6 load test, capture report
-      run: docker run -i grafana/k6 run - <perf1.js > k6report.txt || true
+      run: docker run -i grafana/k6 run - <Perf1.js > k6report.txt || true
         
     - uses: actions/upload-artifact@v4
       with:
