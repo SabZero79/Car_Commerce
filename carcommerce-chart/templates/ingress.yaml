@@ -22,7 +22,7 @@ spec:
               service:
                 name: {{ $.Release.Name }}-frontend
                 port:
-                  number: 8080
+                  number: 80
           {{- end }}
     {{- end }}
   {{- if .Values.ingress.tls }}
