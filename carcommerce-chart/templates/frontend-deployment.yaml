@@ -17,7 +17,7 @@ spec:
         - name: frontend
           image: {{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}
           ports:
-            - containerPort: {{ .Values.frontend.service.port }}
+            - containerPort: {{ .Values.frontend.containerPort }}
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: {{ .Values.frontend.env.ASPNETCORE_ENVIRONMENT }}
@@ -35,4 +35,4 @@ spec:
     app: {{ .Release.Name }}-frontend
   ports:
     - port: 80
-      targetPort: {{ .Values.frontend.service.port }}
+      targetPort: {{ .Values.frontend.containerPort }}
