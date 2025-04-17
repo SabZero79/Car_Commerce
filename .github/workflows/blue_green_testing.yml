@@ -15,7 +15,7 @@ env:
   PRODUCTION_NAMESPACE: carcommerce
   HELM_CHART_DIR: ./carcommerce-chart
   IMAGE_TAG: ${{ github.run_number }}
-  URIS: http://staging.4.208.16.64.nip.io/
+  URIS: http://staging.132.164.216.76.nip.io/
 
 jobs:
   build-and-scan:
