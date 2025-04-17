@@ -90,6 +90,7 @@ jobs:
           --values ./carcommerce-chart/values-staging.yaml \
           --set backend.image.tag=${{ env.IMAGE_TAG }} \
           --set frontend.image.tag=${{ env.IMAGE_TAG }}
+          --set ingress.hosts[0].host=staging.132.164.216.76.nip.io
     
   post-deploy-tests:
     name: K6 Load Test and ZAP Test
