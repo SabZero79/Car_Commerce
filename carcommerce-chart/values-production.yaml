@@ -15,7 +15,7 @@ ingress:
   className: nginx
   annotations: {}
   hosts:
-    - host: 4.208.16.64.nip.io  # overridden via Helm --set for staging/prod
+    - host: 132.164.216.76.nip.io  # overridden via Helm --set for staging/prod
       paths:
         - path: /
           pathType: Prefix
