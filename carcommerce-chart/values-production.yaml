@@ -1,0 +1,62 @@
+namespace: carcommerce
+
+serviceAccount:
+  create: false
+
+service:
+  port: 80
+  type: ClusterIP
+
+global:
+  environment: production  # or 'production', overridden at deployment time
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: 4.208.16.64.nip.io  # overridden via Helm --set for staging/prod
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+hpa:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+backend:
+  image:
+    repository: carcommerceacr.azurecr.io/backend
+    tag: ""  # Will be overridden by helm --set
+    pullPolicy: Always
+  containerPort: 80
+  service:
+    type: ClusterIP
+    port: 8080
+
+frontend:
+  image:
+    repository: carcommerceacr.azurecr.io/frontend
+    tag: ""  # Will be overridden by helm --set
+    pullPolicy: Always
+  env:
+    ASPNETCORE_ENVIRONMENT: Development
+  containerPort: 80
+  service:
+    type: ClusterIP
+    port: 8080
+
+sqlserver:
+  image:
+    repository: mcr.microsoft.com/mssql/server
+    tag: 2022-latest
+  saPassword: "Password12345!"
+  port: 1433
+  persistence:
+    enabled: true
+    storageClass: default
+    accessMode: ReadWriteOnce
+    size: 1Gi

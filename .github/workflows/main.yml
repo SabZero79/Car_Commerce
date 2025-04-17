@@ -1,0 +1,59 @@
+
+name: Deploy to AKS
+
+on:
+  workflow_dispatch:
+ # push:
+ #   branches: [ main ]
+permissions:
+  id-token: write
+  contents: read
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_TAG: ${{ github.run_number }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set AKS context
+        run: |
+           az aks get-credentials --resource-group ${{ secrets.RESOURCE_GROUP }} --name ${{ secrets.CLUSTER_NAME }} --overwrite-existing
+
+      - name: Confirm connection to AKS
+        run: kubectl get nodes
+
+      - name: Docker login to ACR
+        run: echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN_SERVER }} --username ${{ secrets.ACR_USERNAME }} --password-stdin
+
+      - name: Build and push backend
+        run: |
+          docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/backend:${{ env.IMAGE_TAG }} ./Backend
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/backend:${{ env.IMAGE_TAG }}
+
+      - name: Build and push frontend
+        run: |
+          docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }} ./FrontEnd
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/frontend:${{ env.IMAGE_TAG }}
+
+      - name: Verify AKS connection
+        run: |
+          echo "KUBECONFIG: $KUBECONFIG"
+          kubectl config get-contexts
+          kubectl get nodes
+      
+      - name: Helm upgrade
+        run: |
+          helm upgrade carcommerce ./carcommerce-chart \
+            --install \
+            --namespace carcommerce \
+            --set backend.image.tag=${{ env.IMAGE_TAG }} \
+            --set frontend.image.tag=${{ env.IMAGE_TAG }}

@@ -1,0 +1,65 @@
+namespace: carcommerce-staging
+
+serviceAccount:
+  create: false
+
+service:
+  port: 80
+  type: ClusterIP
+
+global:
+  environment: staging
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: staging.4.208.16.64.nip.io
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+hpa:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+backend:
+  image:
+    repository: carcommerceacr.azurecr.io/backend
+    tag: ""
+    pullPolicy: Always
+  containerPort: 80
+  service:
+    type: ClusterIP
+    port: 8080
+  env:
+    ASPNETCORE_ENVIRONMENT: Development
+    ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=CarEcommerce;User=sa;Password=Password12345!;Encrypt=False;TrustServerCertificate=True;"
+
+frontend:
+  image:
+    repository: carcommerceacr.azurecr.io/frontend
+    tag: ""
+    pullPolicy: Always
+  env:
+    ASPNETCORE_ENVIRONMENT: Development
+  containerPort: 8080
+  service:
+    type: ClusterIP
+    port: 80
+
+sqlserver:
+  image:
+    repository: mcr.microsoft.com/mssql/server
+    tag: 2022-latest
+  saPassword: "Password12345!"
+  port: 1433
+  persistence:
+    enabled: true
+    storageClass: default
+    accessMode: ReadWriteOnce
+    size: 1Gi

@@ -1,15 +1,27 @@
 using FrontEnd.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.ListenAnyIP(80);
-});
-// Add services to the container.
+
+// USE THIS FOR CLOUD DEPLOYMENT
+var backendUrl = Environment.GetEnvironmentVariable("BACKEND_URL") ?? "http://backend";
 builder.Services.AddHttpClient<CarService>(client =>
 {
-    client.BaseAddress = new Uri("http://backend"); // internal Docker DNS
+    client.BaseAddress = new Uri(backendUrl);
+    client.Timeout = TimeSpan.FromSeconds(30);
 });
+
+// USE THIS FOR LOCAL DEPLOYMENT
+//builder.Services.AddHttpClient<CarService>(client =>
+//{
+//    client.BaseAddress = new Uri("http://backend:8080"); // internal Docker DNS
+//});
+
+
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(8080);
+});
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
