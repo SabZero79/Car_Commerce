@@ -76,21 +76,23 @@ jobs:
       run: |
         docker build -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
         docker push $ACR_URL/backend:${IMAGE_TAG}
+        
     - name: Build and Push Frontend Image
       run: |
         docker build -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
         docker push $ACR_URL/frontend:${IMAGE_TAG}
+        
     - name: Set KUBECONFIG and Authenticate with AKS
       run: |
         az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
-    - name: Helm Upgrade Staging
+        
+    - name: Deploy GREEN version
       run: |
-        helm upgrade --install carcommerce-staging ./carcommerce-chart \
-          --namespace $STAGING_NAMESPACE \
-          --values ./carcommerce-chart/values-staging.yaml \
+        helm upgrade --install carcommerce-staging-green ./carcommerce-chart \
+          --namespace carcommerce-staging \
+          --values ./carcommerce-chart/values-green.yaml \
           --set backend.image.tag=${{ env.IMAGE_TAG }} \
-          --set frontend.image.tag=${{ env.IMAGE_TAG }} \
-          --set ingress.hosts[0].host=staging.4.207.108.139.nip.io
+          --set frontend.image.tag=${{ env.IMAGE_TAG }}
     
   post-deploy-tests:
     name: K6 Load Test and ZAP Test
@@ -138,10 +140,10 @@ jobs:
     - name: Get AKS Credentials
       run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 
-    - name: Helm Upgrade Production
+    - name: Switch traffic to GREEN
+      if: success()
       run: |
-        helm upgrade --install carcommerce ./carcommerce-chart \
-          --namespace $PRODUCTION_NAMESPACE \
-          --values ./carcommerce-chart/values-production.yaml \
-          --set backend.image.tag=${{ env.IMAGE_TAG }} \
-          --set frontend.image.tag=${{ env.IMAGE_TAG }}
+        helm upgrade carcommerce-staging ./carcommerce-chart \
+          --namespace carcommerce-staging \
+          --values ./carcommerce-chart/values-green.yaml \
+          --set activeColor=green
