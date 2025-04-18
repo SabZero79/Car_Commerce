@@ -1,38 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $.Release.Name }}-frontend
+  name: {{ .Release.Name }}-frontend-{{ .Values.color }}
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ $.Release.Name }}-frontend
+      app: {{ .Release.Name }}-frontend
+      color: {{ .Values.color }}
   template:
     metadata:
       labels:
-        app: {{ $.Release.Name }}-frontend
+        app: {{ .Release.Name }}-frontend
+        color: {{ .Values.color }}
     spec:
       containers:
         - name: frontend
           image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
           ports:
-            - containerPort: {{ .Values.frontend.containerPort }}
+            - containerPort: {{ .Values.frontend.service.port }}
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: {{ .Values.frontend.env.ASPNETCORE_ENVIRONMENT }}
+              value: {{ .Values.frontend.env.ASPNETCORE_ENVIRONMENT | quote }}
             - name: BACKEND_URL
               value: http://{{ .Release.Name }}-backend
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Release.Name }}-frontend
-  namespace: {{ .Values.namespace }}
-spec:
-  type: {{ .Values.frontend.service.type }}
-  selector:
-    app: {{ $.Release.Name }}-frontend
-  ports:
-    - port: 80
-      targetPort: {{ .Values.frontend.containerPort }}

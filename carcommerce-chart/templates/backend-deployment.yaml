@@ -1,17 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-backend
+  name: {{ .Release.Name }}-backend-{{ .Values.color }}
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: {{ .Release.Name }}-backend
+      color: {{ .Values.color }}
   template:
     metadata:
       labels:
         app: {{ .Release.Name }}-backend
+        color: {{ .Values.color }}
     spec:
       containers:
         - name: backend
@@ -23,17 +25,3 @@ spec:
               value: {{ .Values.backend.env.ASPNETCORE_ENVIRONMENT | quote }}
             - name: ConnectionStrings__DefaultConnection
               value: {{ .Values.backend.env.ConnectionStrings__DefaultConnection | quote }}
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Release.Name }}-backend
-  namespace: {{ .Values.namespace }}
-spec:
-  type: {{ .Values.backend.service.type }}
-  selector:
-    app: {{ .Release.Name }}-backend
-  ports:
-    - port: 80
-      targetPort: {{ .Values.backend.service.port }}
