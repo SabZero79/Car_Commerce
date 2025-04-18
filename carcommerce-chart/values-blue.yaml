@@ -1,2 +1,13 @@
 color: blue
 activeColor: blue
+sqlserver:
+  image:
+    repository: mcr.microsoft.com/mssql/server
+    tag: 2022-latest
+  saPassword: "Password12345!"
+  port: 1433
+  persistence:
+    enabled: true
+    storageClass: default
+    accessMode: ReadWriteOnce
+    size: 1Gi
