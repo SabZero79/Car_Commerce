@@ -15,7 +15,7 @@ ingress:
   className: nginx
   annotations: {}
   hosts:
-    - host: staging.132.164.216.76.nip.io
+    - host: staging.4.207.108.139.nip.io
       paths:
         - path: /
           pathType: Prefix
