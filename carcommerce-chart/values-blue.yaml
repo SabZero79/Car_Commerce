@@ -1,5 +1,46 @@
-color: blue
-activeColor: blue
+namespace: carcommerce-staging
+
+serviceAccount:
+  create: false
+
+service:
+  port: 80
+  type: ClusterIP
+
+global:
+  environment: staging
+
+hpa:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+backend:
+  image:
+    repository: carcommerceacr.azurecr.io/backend
+    tag: ""  # To be overridden via --set in GitHub Actions
+    pullPolicy: Always
+  containerPort: 80
+  service:
+    type: ClusterIP
+    port: 8080
+  env:
+    ASPNETCORE_ENVIRONMENT: Development
+    ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=CarEcommerce;User=sa;Password=Password12345!;Encrypt=False;TrustServerCertificate=True;"
+
+frontend:
+  image:
+    repository: carcommerceacr.azurecr.io/frontend
+    tag: ""  # To be overridden via --set in GitHub Actions
+    pullPolicy: Always
+  env:
+    ASPNETCORE_ENVIRONMENT: Development
+  containerPort: 8080
+  service:
+    type: ClusterIP
+    port: 80
+
 sqlserver:
   image:
     repository: mcr.microsoft.com/mssql/server
