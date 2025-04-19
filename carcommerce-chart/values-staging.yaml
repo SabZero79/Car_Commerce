@@ -50,7 +50,7 @@ frontend:
   containerPort: 8080
   service:
     type: ClusterIP
-    port: 80
+    port: 8080
 
 sqlserver:
   image:
