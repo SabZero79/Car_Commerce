@@ -7,7 +7,6 @@ spec:
   type: {{ .Values.frontend.service.type }}
   selector:
     app: {{ .Release.Name }}-frontend
-    color: {{ .Values.activeColor | default "blue" }}
   ports:
     - port: 80
       targetPort: {{ .Values.frontend.service.port }}
