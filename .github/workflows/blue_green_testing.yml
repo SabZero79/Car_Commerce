@@ -88,9 +88,9 @@ jobs:
         
     - name: Deploy GREEN version
       run: |
-        helm upgrade --install carcommerce-staging-green ./carcommerce-chart \
+         helm upgrade --install carcommerce-staging ./carcommerce-chart \
           --namespace carcommerce-staging \
-          --values ./carcommerce-chart/values-green.yaml \
+          --values ./carcommerce-chart/values-staging.yaml \
           --set backend.image.tag=${{ env.IMAGE_TAG }} \
           --set frontend.image.tag=${{ env.IMAGE_TAG }}
     
