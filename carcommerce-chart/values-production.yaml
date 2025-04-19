@@ -43,7 +43,7 @@ frontend:
     tag: ""  # Will be overridden by helm --set
     pullPolicy: Always
   env:
-    ASPNETCORE_ENVIRONMENT: Production
+    ASPNETCORE_ENVIRONMENT: Development
   containerPort: 8080
   service:
     type: ClusterIP
