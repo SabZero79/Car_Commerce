@@ -142,8 +142,10 @@ jobs:
 
     - name: Switch traffic to GREEN
       if: success()
+    - name: Deploy BLUE version
       run: |
-        helm upgrade carcommerce-staging ./carcommerce-chart \
-          --namespace carcommerce-staging \
-          --values ./carcommerce-chart/values-green.yaml \
-          --set activeColor=green
+        helm upgrade --install carcommerce ./carcommerce-chart \
+          --namespace carcommerce \
+          --values ./carcommerce-chart/values-production.yaml \
+          --set backend.image.tag=${{ env.IMAGE_TAG }} \
+          --set frontend.image.tag=${{ env.IMAGE_TAG }}
