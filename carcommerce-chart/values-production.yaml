@@ -15,7 +15,7 @@ ingress:
   className: nginx
   annotations: {}
   hosts:
-    - host: 132.164.216.76.nip.io  # overridden via Helm --set for staging/prod
+    - host: production.4.207.233.155.nip.io # overridden via Helm --set for staging/prod
       paths:
         - path: /
           pathType: Prefix
@@ -43,8 +43,8 @@ frontend:
     tag: ""  # Will be overridden by helm --set
     pullPolicy: Always
   env:
-    ASPNETCORE_ENVIRONMENT: Development
-  containerPort: 80
+    ASPNETCORE_ENVIRONMENT: Production
+  containerPort: 8080
   service:
     type: ClusterIP
     port: 8080
