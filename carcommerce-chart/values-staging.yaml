@@ -47,10 +47,10 @@ frontend:
     pullPolicy: Always
   env:
     ASPNETCORE_ENVIRONMENT: Development
-  containerPort: 8080
+  containerPort: 80
   service:
     type: ClusterIP
-    port: 80
+    port: 8080
 
 sqlserver:
   image:
