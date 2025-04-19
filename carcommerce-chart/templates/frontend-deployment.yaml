@@ -17,7 +17,7 @@ spec:
         - name: frontend
           image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
           ports:
-            - containerPort: {{ .Values.frontend.container.port }}
+            - containerPort: {{ .Values.frontend.containerPort }}
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: {{ .Values.frontend.env.ASPNETCORE_ENVIRONMENT | quote }}
