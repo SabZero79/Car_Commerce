@@ -9,6 +9,13 @@ service:
 
 global:
   environment: staging
+  
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts: []
+  tls: []
 
 hpa:
   enabled: false
