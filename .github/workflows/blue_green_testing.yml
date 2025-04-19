@@ -140,11 +140,9 @@ jobs:
     - name: Get AKS Credentials
       run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 
-    - name: Switch traffic to GREEN
-      if: success()
     - name: Deploy BLUE version
       run: |
-        helm upgrade --install carcommerce ./carcommerce-chart \
+         helm upgrade --install carcommerce ./carcommerce-chart \
           --namespace carcommerce \
           --values ./carcommerce-chart/values-production.yaml \
           --set backend.image.tag=${{ env.IMAGE_TAG }} \
