@@ -37,7 +37,7 @@ export let options = {
 // Export a default function - this defines the entry point for your VUs,
 // similar to the main() function in many other languages.
 export default function () {
-    let res = http.get("http://staging.4.208.16.64.nip.io/");
+    let res = http.get("http://staging.4.207.233.155.nip.io/");
 
     check(res, {
         "is status 200": (r) => r.status === 200
