@@ -75,13 +75,32 @@ jobs:
     - name: Build and Push Backend Image
       run: |
         docker build -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
-        docker push $ACR_URL/backend:${IMAGE_TAG}
         
     - name: Build and Push Frontend Image
       run: |
         docker build -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
-        docker push $ACR_URL/frontend:${IMAGE_TAG}
-        
+
+    - name: Scan Backend Image for Vulnerabilities (Trivy)
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: carcommerceacr.azurecr.io/backend:${{ env.IMAGE_TAG }}
+        format: table
+        exit-code: 1
+        severity: CRITICAL,HIGH
+
+    - name: Scan Frontend Image for Vulnerabilities (Trivy)
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: carcommerceacr.azurecr.io/frontend:${{ env.IMAGE_TAG }}
+        format: table
+        exit-code: 1
+        severity: CRITICAL,HIGH
+
+    - name: Push Frontend and Backend to ACR
+      run: |
+        docker push $ACR_URL/frontend:${IMAGE_TAG} 
+        docker push $ACR_URL/backend:${IMAGE_TAG}
+         
     - name: Set KUBECONFIG and Authenticate with AKS
       run: |
         az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
