@@ -68,11 +68,11 @@ jobs:
 
     - name: Patch Dockerfile (Backend)
       run: |
-        sed -i '/^FROM /a RUN apt-get update && apt-get install -y --only-upgrade libexpat1 && rm -rf /var/lib/apt/lists/*' ./Backend/Dockerfile
+        sed -i '/^FROM /a USER root\nRUN apt-get update \&\& apt-get install -y libexpat1 \&\& rm -rf /var/lib/apt/lists/*\nUSER app' ./Backend/Dockerfile
     
     - name: Patch Dockerfile (Frontend)
       run: |
-        sed -i '/^FROM /a RUN apt-get update && apt-get install -y --only-upgrade libexpat1 && rm -rf /var/lib/apt/lists/*' ./FrontEnd/Dockerfile
+        sed -i '/^FROM /a USER root\nRUN apt-get update \&\& apt-get install -y libexpat1 \&\& rm -rf /var/lib/apt/lists/*\nUSER app' ./FrontEnd/Dockerfile
 
     - name: Build  Backend Image
       run: |
