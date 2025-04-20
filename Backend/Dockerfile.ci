@@ -1,5 +1,5 @@
 # Base runtime image (patched)
-FROM mcr.microsoft.com/dotnet/aspnet:9.0  AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0.15-bookworm-slim  AS base
 USER root
 RUN apt-get update \
     && apt-get install -y --only-upgrade libexpat1 \
@@ -10,7 +10,7 @@ WORKDIR /app
 EXPOSE 8080
 
 # Build image
-FROM mcr.microsoft.com/dotnet/aspnet:9.0  AS build
+FROM mcr.microsoft.com/dotnet/aspnet:8.0.15-bookworm-slim  AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
