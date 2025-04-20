@@ -66,6 +66,14 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Patch Dockerfile (Backend)
+      run: |
+        sed -i '/^FROM /a RUN apt-get update && apt-get install -y --only-upgrade libexpat1 && rm -rf /var/lib/apt/lists/*' ./Backend/Dockerfile
+    
+    - name: Patch Dockerfile (Frontend)
+      run: |
+        sed -i '/^FROM /a RUN apt-get update && apt-get install -y --only-upgrade libexpat1 && rm -rf /var/lib/apt/lists/*' ./FrontEnd/Dockerfile
+
     - name: Build  Backend Image
       run: |
         docker build -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
