@@ -35,6 +35,7 @@ jobs:
       run: |
         dotnet restore Backend/Backend.csproj
         dotnet build Backend/Backend.csproj --configuration Release
+        
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       with:
@@ -52,6 +53,7 @@ jobs:
           echo "Checking vulnerabilities in $proj"
           dotnet list "$proj" package --vulnerable --include-transitive || exit 1
         done
+        
   docker-build-push-deploy-staging:
     needs: build-and-scan
     runs-on: ubuntu-latest
@@ -59,24 +61,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
     - name: Log in to Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Azure Container Registry Login
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ env.ACR_URL }}
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
-
-    - name: Build and Push Backend Image
+    - name: Build  Backend Image
       run: |
         docker build -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
         
-    - name: Build and Push Frontend Image
+    - name: Build  Frontend Image
       run: |
         docker build -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
 
@@ -95,6 +89,13 @@ jobs:
         format: table
         exit-code: 1
         severity: CRITICAL,HIGH
+
+    - name: Azure Container Registry Login
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.ACR_URL }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
 
     - name: Push Frontend and Backend to ACR
       run: |
