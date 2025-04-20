@@ -68,11 +68,11 @@ jobs:
 
     - name: Build  Backend Image
       run: |
-        docker build -f ./Backend/Dockerfile.ci -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
+        docker build -f ./Backend/Dockerfile -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
         
     - name: Build  Frontend Image
       run: |
-        docker build -f ./FrontEnd/Dockerfile.ci -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
+        docker build -f ./FrontEnd/Dockerfile -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
 
     - name: Scan Backend Image for Vulnerabilities (Trivy)
       uses: aquasecurity/trivy-action@master
