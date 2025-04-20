@@ -66,21 +66,13 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Patch Dockerfile (Backend)
-      run: |
-        sed -i '/^FROM /a USER root\nRUN apt-get update \&\& apt-get install -y libexpat1 \&\& rm -rf /var/lib/apt/lists/*\nUSER app' ./Backend/Dockerfile
-    
-    - name: Patch Dockerfile (Frontend)
-      run: |
-        sed -i '/^FROM /a USER root\nRUN apt-get update \&\& apt-get install -y libexpat1 \&\& rm -rf /var/lib/apt/lists/*\nUSER app' ./FrontEnd/Dockerfile
-
     - name: Build  Backend Image
       run: |
-        docker build -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
+        docker build -f ./Backend/Dockerfile.ci -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
         
     - name: Build  Frontend Image
       run: |
-        docker build -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
+        docker build -f ./FrontEnd/Dockerfile.ci -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
 
     - name: Scan Backend Image for Vulnerabilities (Trivy)
       uses: aquasecurity/trivy-action@master
