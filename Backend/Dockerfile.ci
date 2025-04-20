@@ -1,0 +1,34 @@
+# Base runtime with libexpat patched
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm AS base
+# PATCH: Stay as app to not break VS tooling
+USER app
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+# Build image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+
+# COPY & restore (as app, VS likes that)
+COPY . .
+RUN dotnet restore "Backend.csproj"
+RUN dotnet build "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Publish
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# Final runtime with patch (do the patch late!)
+FROM base AS final
+
+# NOW elevate and patch, since VS doesn't invoke this directly
+USER root
+RUN apt-get update && apt-get install -y libexpat1 && rm -rf /var/lib/apt/lists/*
+USER app
+
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Backend.dll"]
