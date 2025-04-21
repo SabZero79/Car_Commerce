@@ -36,9 +36,6 @@ backend:
   service:
     type: ClusterIP
     port: 8080
-  env:
-    ASPNETCORE_ENVIRONMENT: Development
-    ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=CarEcommerce;User=sa;Password=Password12345!;Encrypt=False;TrustServerCertificate=True;"
 
 frontend:
   image:
@@ -63,3 +60,7 @@ sqlserver:
     storageClass: default
     accessMode: ReadWriteOnce
     size: 1Gi
+
+azureKeyVault:
+  name: carcommerce-kv
+  tenantId: c0eaaf4a-860b-4699-a864-1075f4537dc1
