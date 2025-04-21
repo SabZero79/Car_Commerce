@@ -8,24 +8,32 @@ service:
   type: ClusterIP
 
 global:
-  environment: production  # or 'production', overridden at deployment time
+  environment: production
 
 ingress:
   enabled: true
   className: nginx
-  annotations: {}
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    acme.cert-manager.io/http01-ingress-class: "nginx"
   hosts:
-    - host: production.4.207.233.155.nip.io # overridden via Helm --set for staging/prod
+    - host: production.4.207.233.155.nip.io
       paths:
         - path: /
           pathType: Prefix
-  tls: []
+  tls:
+    - hosts:
+        - production.4.207.233.155.nip.io
+      secretName: carcommerce-prod-tls
 
 hpa:
   enabled: false
 
 autoscaling:
-  enabled: false
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 50
 
 backend:
   image:
@@ -36,6 +44,11 @@ backend:
   service:
     type: ClusterIP
     port: 8080
+  resources:
+    requests:
+      cpu: "100m"
+    limits:
+      cpu: "500m"
 
 frontend:
   image:
@@ -48,6 +61,11 @@ frontend:
   service:
     type: ClusterIP
     port: 8080
+  resources:
+    requests:
+      cpu: "100m"
+    limits:
+      cpu: "500m"
 
 sqlserver:
   image:
