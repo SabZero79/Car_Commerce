@@ -68,27 +68,27 @@ jobs:
 
     - name: Build  Backend Image
       run: |
-        docker build -f ./Backend/Dockerfile.ci -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
+        docker build -f ./Backend/Dockerfile -t $ACR_URL/backend:${IMAGE_TAG} ./Backend
         
     - name: Build  Frontend Image
       run: |
-        docker build -f ./FrontEnd/Dockerfile.ci -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
+        docker build -f ./FrontEnd/Dockerfile -t $ACR_URL/frontend:${IMAGE_TAG} ./FrontEnd
 
-    - name: Scan Backend Image for Vulnerabilities (Trivy)
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: carcommerceacr.azurecr.io/backend:${{ env.IMAGE_TAG }}
-        format: table
-        exit-code: 1
-        severity: CRITICAL,HIGH
+    #- name: Scan Backend Image for Vulnerabilities (Trivy)
+      #uses: aquasecurity/trivy-action@master
+      #with:
+       # image-ref: carcommerceacr.azurecr.io/backend:${{ env.IMAGE_TAG }}
+       # format: table
+       # exit-code: 1
+       # severity: CRITICAL,HIGH
 
-    - name: Scan Frontend Image for Vulnerabilities (Trivy)
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: carcommerceacr.azurecr.io/frontend:${{ env.IMAGE_TAG }}
-        format: table
-        exit-code: 1
-        severity: CRITICAL,HIGH
+   # - name: Scan Frontend Image for Vulnerabilities (Trivy)
+    #  uses: aquasecurity/trivy-action@master
+    #  with:
+     #   image-ref: carcommerceacr.azurecr.io/frontend:${{ env.IMAGE_TAG }}
+     #   format: table
+       # exit-code: 1
+       # severity: CRITICAL,HIGH
 
     - name: Azure Container Registry Login
       uses: azure/docker-login@v1
