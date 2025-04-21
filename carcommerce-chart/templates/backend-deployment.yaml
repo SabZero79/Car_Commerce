@@ -38,4 +38,4 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: sql-secret-provider
+              secretProviderClass: {{ .Release.Name }}-sql-secret-provider
