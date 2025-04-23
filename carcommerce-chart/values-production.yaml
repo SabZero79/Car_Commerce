@@ -27,7 +27,7 @@ ingress:
       secretName: carcommerce-prod-tls
 
 hpa:
-  enabled: false
+  enabled: true
 
 autoscaling:
   enabled: true
