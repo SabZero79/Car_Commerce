@@ -106,10 +106,10 @@ jobs:
       run: |
         az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 
-    - name: Power Up Staging
-      run: |
-        kubectl scale deployment carcommerce-staging-frontend --replicas=1 -n carcommerce-staging
-        kubectl scale deployment carcommerce-staging-backend --replicas=1 -n carcommerce-staging
+    #- name: Power Up Staging
+      #run: |
+        #kubectl scale deployment carcommerce-staging-frontend --replicas=1 -n carcommerce-staging
+        #kubectl scale deployment carcommerce-staging-backend --replicas=1 -n carcommerce-staging
         
     - name: Deploy GREEN version
       run: |
@@ -173,6 +173,6 @@ jobs:
           --set backend.image.tag=${{ env.IMAGE_TAG }} \
           --set frontend.image.tag=${{ env.IMAGE_TAG }}
 
-    - name: Power Down Staging
-      run: |
-         kubectl scale deployment --all --replicas=0 -n carcommerce-staging
+    #- name: Power Down Staging
+      #run: |
+        # kubectl scale deployment --all --replicas=0 -n carcommerce-staging
