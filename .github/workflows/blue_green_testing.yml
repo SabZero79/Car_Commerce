@@ -108,8 +108,7 @@ jobs:
 
     - name: Power up staging
       run: |
-        kubectl scale deployment carcommerce-staging-frontend --replicas=1 -n carcommerce-staging
-        kubectl scale deployment carcommerce-staging-backend --replicas=1 -n carcommerce-staging
+        kubectl scale deployment --all --replicas=1 -n carcommerce-staging
 
     - name: Wait for all pods in staging to be ready
       run: |
