@@ -21,6 +21,8 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: {{ .Values.backend.env.ASPNETCORE_ENVIRONMENT | quote }}
+
+            {{- if eq .Values.namespace "carcommerce" }}
             - name: SQL_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -28,10 +30,19 @@ spec:
                   key: sql-password
             - name: ConnectionStrings__DefaultConnection
               value: "Server=sqlserver;Database=CarEcommerce;User=sa;Password=$(SQL_PASSWORD);Encrypt=False;TrustServerCertificate=True;"
+            {{- else }}
+            - name: ConnectionStrings__DefaultConnection
+              value: {{ .Values.backend.env.ConnectionStrings__DefaultConnection | quote }}
+            {{- end }}
+
+          {{- if .Values.azureKeyVault }}
           volumeMounts:
             - name: kv-secrets
               mountPath: /mnt/secrets
               readOnly: true
+          {{- end }}
+
+      {{- if .Values.azureKeyVault }}
       volumes:
         - name: kv-secrets
           csi:
@@ -39,3 +50,4 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: {{ .Release.Name }}-sql-secret-provider
+      {{- end }}
