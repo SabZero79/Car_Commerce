@@ -106,12 +106,16 @@ jobs:
       run: |
         az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
 
-    - name: Power Up Staging
+    - name: Power up staging
       run: |
         kubectl scale deployment carcommerce-staging-frontend --replicas=1 -n carcommerce-staging
         kubectl scale deployment carcommerce-staging-backend --replicas=1 -n carcommerce-staging
+
+    - name: Wait for all pods in staging to be ready
+      run: |
+        kubectl wait --for=condition=available deployment --all -n carcommerce-staging --timeout=180s
         
-    - name: Deploy GREEN version
+    - name: Deploy GREEN version (staging)
       run: |
          helm upgrade --install carcommerce-staging ./carcommerce-chart \
           --namespace carcommerce-staging \
