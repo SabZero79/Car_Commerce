@@ -114,6 +114,21 @@ jobs:
     - name: Wait for all pods in staging to be ready
       run: |
         kubectl wait --for=condition=available deployment --all -n carcommerce-staging --timeout=180s
+
+    - name: Wait until staging URL is healthy
+      run: |
+        for i in {1..30}; do
+          status=$(curl -s -o /dev/null -w "%{http_code}" http://staging.4.207.233.155.nip.io/)
+          if [ "$status" -eq 200 ]; then
+            echo "Staging is healthy!"
+            exit 0
+          else
+            echo "Waiting... Got HTTP $status"
+            sleep 5
+          fi
+        done
+        echo "Timed out waiting for a healthy staging response"
+        exit 1
         
     - name: Deploy GREEN version (staging)
       run: |
