@@ -19,7 +19,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: coral;
+    background-color: lightcoral;
 }
 .car-list {
     display: flex;
