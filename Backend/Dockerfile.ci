@@ -18,12 +18,12 @@ RUN dotnet restore "Backend.csproj"
 COPY . .
 
 # Build the project
-RUN dotnet build "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "Backend.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
 
 # Publish to /app/publish
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Backend.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
 
 # Final stage (used in release/debug)
 FROM base AS final

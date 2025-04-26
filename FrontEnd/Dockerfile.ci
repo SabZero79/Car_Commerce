@@ -18,12 +18,12 @@ RUN dotnet restore "FrontEnd.csproj"
 COPY . .
 
 # Build the app
-RUN dotnet build "FrontEnd.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "FrontEnd.csproj" -c "$BUILD_CONFIGURATION" -o /app/build
 
 # Publish to /app/publish
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "FrontEnd.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "FrontEnd.csproj" -c "$BUILD_CONFIGURATION" -o /app/publish /p:UseAppHost=false
 
 # Final stage for runtime
 FROM base AS final
