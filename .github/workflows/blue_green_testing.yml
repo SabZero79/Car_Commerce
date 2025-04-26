@@ -1,9 +1,10 @@
 name: Blue/Green Deployment Pipeline
 
 on:
-  push:
-    branches:
-      - main
+ workflow_dispatch:
+  #push:
+    #branches:
+      #- main
 
 env:
   REGISTRY_NAME: carcommerceacr
