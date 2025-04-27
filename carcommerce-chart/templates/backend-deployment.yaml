@@ -22,7 +22,7 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: {{ .Values.backend.env.ASPNETCORE_ENVIRONMENT | quote }}
 
-            {{- if eq .Values.namespace "carcommere" }}
+            {{- if eq .Values.namespace "carcommerce" }}
             - name: SQL_PASSWORD
               valueFrom:
                 secretKeyRef:
