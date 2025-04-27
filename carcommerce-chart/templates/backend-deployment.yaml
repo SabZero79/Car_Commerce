@@ -50,4 +50,6 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: {{ .Release.Name }}-sql-secret-provider
+            nodePublishSecretRef:
+              name: aks-kv-secret
       {{- end }}

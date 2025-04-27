@@ -19,7 +19,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: darkkhaki;
+    background-color: gray;
 }
 .car-list {
     display: flex;
