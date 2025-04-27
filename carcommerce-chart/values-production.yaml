@@ -40,9 +40,6 @@ backend:
     repository: carcommerceacr.azurecr.io/backend
     tag: ""  # Will be overridden by helm --set
     pullPolicy: Always
-  env:
-    ASPNETCORE_ENVIRONMENT: Development
-    ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=CarEcommerce;User=sa;Password=Password12345!;Encrypt=False;TrustServerCertificate=True;"
   containerPort: 80
   service:
     type: ClusterIP
@@ -81,3 +78,7 @@ sqlserver:
     storageClass: default
     accessMode: ReadWriteOnce
     size: 1Gi
+    
+  azureKeyVault:
+     tenantId: c0eaaf4a-860b-4699-a864-1075f4537dc1
+     keyvaultName: carcommerce-kv
