@@ -16,8 +16,7 @@ export let options = {
     // then ramp down to 0 over a minute i.e. ramp-up pattern of "load"
     stages: [
         { duration: "1m", target: 20 },           // 1 new vu every 3 seconds
-        { duration: "1m", target: 50 },
-        { duration: "1m", target: 0 }             // 1 less vu every 3 seconds
+        { duration: "1m", target: 50 }
     ],
 
     // set a threshold at 100 ms request duration for 95th percentile
